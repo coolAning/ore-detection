@@ -13,50 +13,28 @@
           <el-form ref="formRef" :model="loginForm" :rules="formRules">
             <el-tabs id="login-tab" v-model="activeTab">
               <div class="tip" />
-              <el-tab-pane label="账号登录" name="password">
-                <el-form-item label="" prop="mobile">
-                  <el-input v-model="loginForm.mobile" type="number" class="m-2" placeholder="请输入手机号">
-                    <template #prefix>
-                      <el-icon :size="22">
-                        <iphone />
-                      </el-icon>
-                    </template>
-                  </el-input>
-                </el-form-item>
-                <el-form-item v-if="activeTab === 'password'" prop="password">
-                  <el-input v-model="loginForm.password" type="password" show-password class="m-2" placeholder="请输入密码">
-                    <template #prefix>
-                      <el-icon :size="22">
-                        <lock />
-                      </el-icon>
-                    </template>
-                  </el-input>
-                </el-form-item>
-              </el-tab-pane>
-              <el-tab-pane label="验证码登录" name="code">
-                <el-form-item label="" prop="mobile">
-                  <el-input v-model="loginForm.mobile" placeholder="请输入手机号" class="m-2">
-                    <template #prefix>
-                      <el-icon :size="22">
-                        <iphone />
-                      </el-icon>
-                    </template>
-                  </el-input>
-                </el-form-item>
-                <el-form-item v-if="activeTab === 'code'" prop="code" class="code-item">
-                  <el-input v-model="loginForm.code" maxlength="6" class="m-2" placeholder="请输入验证码">
-                    <!-- <template #prefix>
-                      <el-icon :size="22">
-                        <discount />
-                      </el-icon>
-                    </template> -->
-                  </el-input>
-                  <el-button link type="primary" :loading="codeLoading" :disabled="codeText !== '获取验证码' && codeText !== '重新发送'
-                    " @click="handleCode">
-                    {{ codeText }}
-                  </el-button>
-                </el-form-item>
-              </el-tab-pane>
+              <el-text class="mx-1" size="large">账号登录</el-text>
+              <!-- <el-tab-pane label="账号登录" name="password" > -->
+              <el-form-item label="" prop="mobile">
+                <el-input v-model="loginForm.mobile" type="number" class="m-2" placeholder="请输入账号">
+                  <template #prefix>
+                    <el-icon :size="22">
+                      <iphone />
+                    </el-icon>
+                  </template>
+                </el-input>
+              </el-form-item>
+              <el-form-item v-if="activeTab === 'password'" prop="password">
+                <el-input v-model="loginForm.password" type="password" show-password class="m-2" placeholder="请输入密码">
+                  <template #prefix>
+                    <el-icon :size="22">
+                      <lock />
+                    </el-icon>
+                  </template>
+                </el-input>
+              </el-form-item>
+              <!-- </el-tab-pane> -->
+
             </el-tabs>
             <el-form-item class="footer-btn">
               <el-button type="primary" :loading="loginLoading" class="w-50 m-2" @click="loginFun">
@@ -174,6 +152,7 @@ onMounted(() => {
 }
 
 .el-form {
+
   width: 500px;
   padding: 50px 21px;
   background: #ffffff;
@@ -225,6 +204,12 @@ onMounted(() => {
   }
 }
 
+.mx-1 {
+  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
 .login-wrap {
   width: 100%;
   height: 100%;
@@ -256,6 +241,10 @@ onMounted(() => {
     margin-top: -40px;
   }
 
+  #login-tab {
+    text-align: center;
+  }
+
   .content {
     height: 520px;
     box-shadow: #0000001a 0 2px 10px 2px;
@@ -270,5 +259,4 @@ footer p {
   margin-top: 40px;
   font-size: 14px;
   color: #999;
-}
-</style>
+}</style>

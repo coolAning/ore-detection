@@ -9,7 +9,11 @@ import { RouterLink, RouterView } from 'vue-router'
 
 
 
-<style >
+<style scoped>
+/* html,body{
+  margin: 0px;
+  padding: 0px;
+} */
 #app {
   width: 100%;
   height: 100%;
@@ -18,7 +22,6 @@ import { RouterLink, RouterView } from 'vue-router'
   padding: 0px;
   border: hidden;
   top: 0px;
-
   left: 0px;
 }
 </style>
