@@ -110,7 +110,7 @@ const loginFun = () => {
       if (form.loginForm.account=="1"&&form.loginForm.password=="1") {
         // 登录成功
         loginLoading.value = false
-        router.push('/home')
+        router.push('/main')
       } else {
         // 登录失败
         loginLoading.value = false

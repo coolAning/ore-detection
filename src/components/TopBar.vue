@@ -23,6 +23,8 @@ function logout() {
 
 <template>
     <div class="top">
+        <!-- <el-text id="top-text">矿石检测系统</el-text> -->
+        <span class="top-text">矿 石 检 测 系 统</span>
         <button @click="gotoMain" :class="{ active: currentRoute === '/main' }">主界面</button>
         <button @click="gotoSettings" :class="{ active: currentRoute === '/setting' }">系统设置</button>
         <button @click="logout">退出</button>
@@ -38,18 +40,28 @@ function logout() {
     padding: 10px;
 }
 
+.top-text {
+  letter-spacing: 1em; 
+  padding-left: 100px;
+  color: rgb(162, 115, 54);
+  font-size: 20px;
+  font-weight: bold;
+}
 .top button {
     border: none;
     background-color: transparent;
     cursor: pointer;
     font-size: 16px;
 }
+#top-text {
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 50px;
+}
 
 .top button.active {
     font-weight: bold;
 }
 
-.content {
-    padding: 20px;
-}
+
 </style>
