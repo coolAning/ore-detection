@@ -1,25 +1,48 @@
 <template>
   <div class="login-wrap">
     <div class="logo-box flex items-center">
-      <img class="w-60px" src="@/assets/svg/logo.svg" alt="" />
+
+      <div class="block text-center" style="height: 100vh">
+        <el-carousel height="auto" autoplay>
+          <el-carousel-item style="height: 100vh">
+            <!-- <h3 class="small justify-center" text="2xl">height 100px</h3> -->
+            <img class="w-60px" src="@/assets/jpg/1.jpg" alt="" />
+          </el-carousel-item>
+          <el-carousel-item style="height: 100vh">
+            <img class="w-60px" src="@/assets/jpg/2.jpg" alt="" />
+          </el-carousel-item>
+          <el-carousel-item style="height: 100vh">
+            <img class="w-60px" src="@/assets/jpg/3.jpg" alt="" />
+          </el-carousel-item>
+        </el-carousel>
+      </div>
+
+      <!-- <img class="w-60px" src="@/assets/svg/logo.svg" alt="" /> -->
       <!-- <div class="ml-5 font-bold text-5">offbeat-ui</div> -->
     </div>
     <div class="login">
+
+
+
       <div class="main-left_img">
         <img :src="loginLeft" alt="" />
       </div>
       <div class="login-model flex-center">
+
+        <el-text class="mx-2" size="large">矿石检测系统</el-text>
+
         <div class="content">
           <el-form ref="formRef" :model="loginForm" :rules="formRules">
             <el-tabs id="login-tab" v-model="activeTab">
               <div class="tip" />
               <el-text class="mx-1" size="large">账号登录</el-text>
               <!-- <el-tab-pane label="账号登录" name="password" > -->
-              <el-form-item label="" prop="mobile">
-                <el-input v-model="loginForm.mobile" type="number" class="m-2" placeholder="请输入账号">
+              <el-form-item label="" prop="account">
+                <el-input v-model="loginForm.account" type="number" class="m-2" placeholder="请输入账号">
+
                   <template #prefix>
                     <el-icon :size="22">
-                      <iphone />
+                      <User />
                     </el-icon>
                   </template>
                 </el-input>
@@ -52,7 +75,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Iphone, Lock } from '@element-plus/icons-vue'
+import { Iphone, Lock, User } from '@element-plus/icons-vue'
 import { onMounted, reactive, ref, toRefs } from 'vue'
 import { onKeyStroke } from '@vueuse/core'
 import { ElMessage } from 'element-plus'
@@ -60,74 +83,42 @@ import router from '@/router'
 import loginLeft from '@/assets/svg/login_left.svg'
 import type { FormInstance, FormRules } from 'element-plus'
 
-const codeLoading = ref(false)
 const loginLoading = ref(false)
 const activeTab = ref('password')
-const codeText = ref('获取验证码')
 const formRef = ref<FormInstance>()
 const form = reactive({
   loginForm: {
-    mobile: '',
-    code: '',
+    account: '',
     password: ''
   }
 })
 const { loginForm } = toRefs(form)
 const formRules = reactive<FormRules>({
-  // mobile: [{ required: true, validator: elv.isMobile(), trigger: 'blur' }],
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
   code: [{ required: true, message: '请输入验证码', trigger: 'blur' }]
 })
 
-// 获取验证码
-const handleCode = () => {
-  // if (!(codeText.value === '获取验证码' || codeText.value === '重新发送'))
-  //   return
 
-  // getcode()
-  // const countDown = useCountDown({
-  //   time: 60 * 1000,
-  //   onChange: (current) => {
-  //     if (current.seconds === 0) {
-  //       countDown.pause()
-  //       codeText.value = '重新发送'
-  //     } else {
-  //       codeText.value = `${current.seconds}s`
-  //     }
-  //   }
-  // })
-  // countDown.start()
-}
-
-const getcode = () => {
-  codeLoading.value = true
-
-  setTimeout(() => {
-    ElMessage.success('获取成功')
-    codeLoading.value = false
-  }, 1000)
-}
 
 // 触发登录
 const loginFun = () => {
   // 表单校验
-  // formRef.value?.validate((valid) => {
-  //   if (valid) {
-  //     // 验证通过
-  //     loginLoading.value = true
-  //     login(form.loginForm)
-  //       .then((res) => {
-  //         setToken(res.token)
-  //         loginLoading.value = false
-  //         router.push('/home')
-  //       })
-  //       .catch(() => {
-  //         loginLoading.value = false
-  //       })
-  //   } else {
-  //     return false
-  //   }
-  // })
+  formRef.value?.validate((valid) => {
+    if (valid) {
+      // 验证通过
+      loginLoading.value = true
+      if (form.loginForm.account=="1"&&form.loginForm.password=="1") {
+        // 登录成功
+        loginLoading.value = false
+        router.push('/home')
+      } else {
+        // 登录失败
+        loginLoading.value = false
+        ElMessage.error('账号或密码错误')
+      }
+        
+      }
+  })
 }
 
 // 回车事件
@@ -141,6 +132,35 @@ onMounted(() => {
 
 
 <style lang="scss" scoped>
+//走马灯
+.carousel-item {
+  color: #475669;
+  opacity: 0.75;
+  margin: 0;
+  text-align: center;
+  width: 60px;
+}
+
+.el-carousel__item h3 {
+  color: #475669;
+  opacity: 0.75;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  text-align: center;
+  height: 100%;
+}
+
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #d3dce6;
+}
+
+//走马灯结束
+
 .logo-box {
   width: 100%;
   background: #ffffff;
@@ -148,7 +168,7 @@ onMounted(() => {
   top: 0;
   left: 0;
   z-index: 100;
-  padding: 10px 20px 15px;
+  padding: 0px 0px 0px;
 }
 
 .el-form {
@@ -210,6 +230,14 @@ onMounted(() => {
   font-weight: bold;
 }
 
+.mx-2 {
+  margin-bottom: 150px;
+  font-size: 50px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
 .login-wrap {
   width: 100%;
   height: 100%;
@@ -239,6 +267,7 @@ onMounted(() => {
   .login-model {
     width: 700px;
     margin-top: -40px;
+
   }
 
   #login-tab {
@@ -259,4 +288,5 @@ footer p {
   margin-top: 40px;
   font-size: 14px;
   color: #999;
-}</style>
+}
+</style>
