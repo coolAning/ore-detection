@@ -8,17 +8,15 @@ interface TestAPISchema extends APISchema {
             "password": string
         },
         response: {
-            "uuid": string
-            "account": string
         },
     },
-    getUsers: {
+    upload: {
         request: {
+            "file": File
         },
         response: {
-            "uuid": string
-            "account": string
-        }[],
+            "file": string
+        },
     },
     add: {
         request: {
@@ -82,48 +80,39 @@ interface TestAPISchema extends APISchema {
 export const api = attachAPI<TestAPISchema>(service, {
     login: {
         method : 'POST',
-        url : '/login',
-        needId : false,
+        url : '/user/login',
     },
-    getUsers:{
-        method : 'GET',
-        url : '/getUsers',
-        needId : true,
+    upload:{
+        method : 'POST',
+        url : '/main/upload',
     },
     add:{
         method : 'POST',
         url : '/add',
-        needId : true,
     },
     getInfo:{
         method : 'GET',
         url : '/getInfo',
-        needId : true,
     },
     getConfirm:{
         method : 'GET',
         url : '/getConfirm',
-        needId : true,
     },
     addTx:{
         method : 'POST',
         url : '/addTx',
-        needId : true,
     },
     confirm:{
         method : 'POST',
         url : '/confirm',
-        needId : true,
     },
     getConfirmState:{
         method : 'POST',
         url : '/getConfirmState',
-        needId : true,
     },
     cancel:{
         method : 'POST',
         url : '/cancel',
-        needId : true,
     },
 });
 export type test = {

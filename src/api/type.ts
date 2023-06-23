@@ -10,7 +10,6 @@ type RemoveIndexSignature<Obj extends Record<string, any>> = {
 export type APIurl = {
     method : string,
     url : string,
-    needId : boolean,
 };
 
 export type HeaderHandler = (config?: AxiosRequestConfig) => Promise<AxiosRequestHeaders>;

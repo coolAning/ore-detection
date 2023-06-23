@@ -16,14 +16,9 @@ export function attachAPI<T extends APISchema>(
         const apiConfig = apis[apiName];
         let apiPath = apiConfig as APIurl;
 
-        hostApi[apiName] = (params, id) => {
+        hostApi[apiName] = (params) => {
             const _params = { ...(params || {}) };
-            let url = ""
-            if(apiPath.needId){
-                url = `/${id}${apiPath.url}`
-            } else{
-                url = apiPath.url
-            }
+            let url = apiPath.url
             console.log(url)
             return client.request({
                 url,
@@ -36,7 +31,7 @@ export function attachAPI<T extends APISchema>(
 }
 import { ElMessage } from "element-plus";
 export const service = axios.create({
-    baseURL: "https://tro.435qb.top:13456",//"https://tro.435qb.top:13456", //"http://118.202.10.57:13456" "http://localhost:8085"
+    baseURL: "http://localhost:5000",//"https://tro.435qb.top:13456", //"http://118.202.10.57:13456" "http://localhost:8085"
     timeout: 5000,
 })
 
@@ -50,12 +45,12 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use((response) => {
 
     const meta = response.data
-    if (meta.status === 0) {
+    if (meta.code === 0) {
         // ElMessage.success(meta.message);
-        response.data = meta.result
-        return response
+        // response.data = meta.result
+        return meta.data
     } else {
-        ElMessage.error(meta.message)
+        ElMessage.error(meta.msg)
         return Promise.reject(new Error(meta.message))
     }
 }, error => {

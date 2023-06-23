@@ -82,6 +82,7 @@ import { ElMessage } from 'element-plus'
 import router from '@/router'
 import loginLeft from '@/assets/svg/login_left.svg'
 import type { FormInstance, FormRules } from 'element-plus'
+import userapi from '../api/users'
 
 const loginLoading = ref(false)
 const activeTab = ref('password')
@@ -107,17 +108,29 @@ const loginFun = () => {
     if (valid) {
       // 验证通过
       loginLoading.value = true
-      if (form.loginForm.account=="1"&&form.loginForm.password=="1") {
-        // 登录成功
-        loginLoading.value = false
-        router.push('/main')
-      } else {
-        // 登录失败
-        loginLoading.value = false
-        ElMessage.error('账号或密码错误')
-      }
-        
-      }
+      userapi.login({
+        account: form.loginForm.account,
+        password: form.loginForm.password
+      })
+        .then(function (response) {
+          ElMessage("登录成功")
+          router.push('/main')
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+
+      // if (form.loginForm.account=="1"&&form.loginForm.password=="1") {
+      //   // 登录成功
+      //   loginLoading.value = false
+      //   router.push('/main')
+      // } else {
+      //   // 登录失败
+      //   loginLoading.value = false
+      //   ElMessage.error('账号或密码错误')
+      // }
+
+    }
   })
 }
 
