@@ -1,6 +1,16 @@
 <script lang="ts" setup>
+import { ref ,computed } from 'vue'
 import TopBar from '../components/TopBar.vue';
-import { UploadFilled } from '@element-plus/icons-vue'
+import UploadPicture from '../components/UploadPicture.vue';
+
+const outputImg = ref<string | null>(null)
+function handleChildEvent(message: string) {
+    outputImg.value = message
+}
+
+const imageData = computed(() => {
+  return `data:image/png;base64,${outputImg.value}`;
+});
 </script>  
 
 <template>
@@ -9,27 +19,12 @@ import { UploadFilled } from '@element-plus/icons-vue'
 
         <div class="content">
             <div class="imageRegion">
-
-                <div class="upload">
-                    <el-upload class="upload-demo" drag
-                        action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15" multiple>
-                        <el-icon class="el-icon--upload"><upload-filled /></el-icon>
-                        <div class="el-upload__text">
-                            Drop file here or <em>click to upload</em>
-                        </div>
-                        <template #tip>
-                            <div class="el-upload__tip">
-                                jpg/png files with a size less than 500kb
-                            </div>
-                        </template>
-                    </el-upload>
-                    
+                <div class="upload-div">
+                    <UploadPicture @my-event="handleChildEvent"></UploadPicture>
                 </div>
-
                 <div class="output">
-                    <p class="test">这是输出区域</p>
+                    <img :src="imageData" class="output-img" alt="my-image">
                 </div>
-
             </div>
         </div>
     </div>
@@ -49,27 +44,33 @@ import { UploadFilled } from '@element-plus/icons-vue'
     padding: 10px;
 }
 
-.upload {
+.upload-div {
     flex: 1;
     padding-left: 10vh;
-    padding-right: 10vh
-}
-
-.el-icon--upload {
-    height: 50vh;
+    padding-right: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .output {
     flex: 1;
     padding-left: 10vh;
-    padding-right: 10vh
+    padding-right: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.test {
-    height: 50vh;
+.output-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    /* height: 50vh; */
     padding-top: 10vh;
-    background-color: rgb(164, 170, 170);
+    /* background-color: rgb(164, 170, 170); */
     padding-left: 10vh;
     padding-right: 10vh
-}</style>
+}
+</style>
   

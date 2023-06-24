@@ -82,7 +82,7 @@ import { ElMessage } from 'element-plus'
 import router from '@/router'
 import loginLeft from '@/assets/svg/login_left.svg'
 import type { FormInstance, FormRules } from 'element-plus'
-import userapi from '../api/users'
+import api from '../api/api'
 
 const loginLoading = ref(false)
 const activeTab = ref('password')
@@ -108,7 +108,7 @@ const loginFun = () => {
     if (valid) {
       // 验证通过
       loginLoading.value = true
-      userapi.login({
+      api.login({
         account: form.loginForm.account,
         password: form.loginForm.password
       })

@@ -34,7 +34,9 @@ export const service = axios.create({
     baseURL: "http://localhost:5000",//"https://tro.435qb.top:13456", //"http://118.202.10.57:13456" "http://localhost:8085"
     timeout: 5000,
 })
-
+export const getBaseUrl = () => {
+    return service.defaults.baseURL;
+  };
 service.interceptors.request.use(config => {
     config.headers.Authorization = localStorage.getItem('token')
     return config
@@ -48,7 +50,7 @@ service.interceptors.response.use((response) => {
     if (meta.code === 0) {
         // ElMessage.success(meta.message);
         // response.data = meta.result
-        return meta.data
+        return meta
     } else {
         ElMessage.error(meta.msg)
         return Promise.reject(new Error(meta.message))
