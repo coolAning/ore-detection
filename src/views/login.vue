@@ -2,7 +2,7 @@
   <div class="login-wrap">
     <div class="logo-box flex items-center" style="flex: 1;">
 
-      <div class="block text-center" style="height: 100vh">
+      <div class="block text-center" style="height: 100%">
         <el-carousel height="auto" autoplay>
           <el-carousel-item style="height: 100vh">
             <!-- <h3 class="small justify-center" text="2xl">height 100px</h3> -->
@@ -66,8 +66,6 @@
               </el-button>
             </el-form-item>
           </el-form>
-          <footer>
-          </footer>
         </div>
         <!-- 底部 -->
       </div>
@@ -120,18 +118,6 @@ const loginFun = () => {
         .catch(function (error) {
           console.log(error);
         })
-        
-
-      // if (form.loginForm.account=="1"&&form.loginForm.password=="1") {
-      //   // 登录成功
-      //   loginLoading.value = false
-      //   router.push('/main')
-      // } else {
-      //   // 登录失败
-      //   loginLoading.value = false
-      //   ElMessage.error('账号或密码错误')
-      // }
-
     }
   })
 }
@@ -153,7 +139,7 @@ onMounted(() => {
   opacity: 0.75;
   margin: 0;
   text-align: center;
-  width: 60px;
+  width: 60vh;
 }
 
 .el-carousel__item h3 {
@@ -203,22 +189,10 @@ onMounted(() => {
     color: #181818;
   }
 
-  .code-item .el-button {
-    position: absolute;
-    height: 22px;
-    line-height: 22px;
-    top: 30px;
-    right: 20px;
-    border-left: 1px solid #d8d9e1;
-    padding-left: 15px;
-    font-weight: 500;
-    font-size: 16px;
-    border-radius: 0;
-  }
-
   .footer-btn .el-button {
     width: 100%;
     height: 60px;
+    margin-top: 5vh;
     border-radius: 4px;
     font-size: 16px;
     font-weight: 500;
@@ -269,30 +243,5 @@ onMounted(() => {
       width: 90%;
     }
   }
-
-  .login-model {
-    width: 700px;
-    margin-top: -40px;
-
-  }
-
-  #login-tab {
-    text-align: center;
-  }
-
-  .content {
-    height: 520px;
-    box-shadow: #0000001a 0 2px 10px 2px;
-    background: #fff;
-    overflow: hidden;
-  }
-}
-
-footer p {
-  width: 100%;
-  text-align: center;
-  margin-top: 40px;
-  font-size: 14px;
-  color: #999;
 }
 </style>
