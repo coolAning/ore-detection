@@ -1,6 +1,6 @@
 <template>
   <div class="login-wrap">
-    <div class="logo-box flex items-center">
+    <div class="logo-box flex items-center" style="flex: 1;">
 
       <div class="block text-center" style="height: 100vh">
         <el-carousel height="auto" autoplay>
@@ -33,9 +33,10 @@
 
         <div class="content">
           <el-form ref="formRef" :model="loginForm" :rules="formRules">
+            <el-text class="mx-1" size="large">账号登录</el-text>
             <el-tabs id="login-tab" v-model="activeTab">
               <div class="tip" />
-              <el-text class="mx-1" size="large">账号登录</el-text>
+
               <!-- <el-tab-pane label="账号登录" name="password" > -->
               <el-form-item label="" prop="account">
                 <el-input v-model="loginForm.account" type="number" class="m-2" placeholder="请输入账号">
@@ -119,6 +120,7 @@ const loginFun = () => {
         .catch(function (error) {
           console.log(error);
         })
+        
 
       // if (form.loginForm.account=="1"&&form.loginForm.password=="1") {
       //   // 登录成功
@@ -173,16 +175,6 @@ onMounted(() => {
 }
 
 //走马灯结束
-
-.logo-box {
-  width: 100%;
-  background: #ffffff;
-  box-shadow: 0px 2px 12px 0px rgba(63, 78, 96, 0.08);
-  top: 0;
-  left: 0;
-  z-index: 100;
-  padding: 0px 0px 0px;
-}
 
 .el-form {
 
@@ -241,6 +233,7 @@ onMounted(() => {
   margin-bottom: 10px;
   font-size: 30px;
   font-weight: bold;
+  padding-left: 25vh
 }
 
 .mx-2 {
@@ -253,7 +246,7 @@ onMounted(() => {
 
 .login-wrap {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: #f5f6fa;
   display: flex;
   flex-direction: row;
@@ -263,14 +256,14 @@ onMounted(() => {
   flex: 1;
   display: flex;
   align-items: center;
-  padding: 0 100px;
+  padding: 0 15vh 0 0;
   background-image: url(@/assets/svg/login_bg.svg);
   background-size: 100% 100%;
 
   .main-left_img {
     float: left;
     margin-top: -60px;
-    padding-left: 40px;
+    padding-left: 0px;
 
     img {
       width: 90%;

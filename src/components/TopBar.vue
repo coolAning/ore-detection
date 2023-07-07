@@ -64,6 +64,7 @@ function logout() {
     align-items: center;
     background-color: #f0f0f0;
     padding: 10px;
+    height: 15vh;
 }
 
 .top-text {
