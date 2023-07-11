@@ -1,5 +1,3 @@
-
-
 <template>
     <div>
         <TopBar></TopBar>
@@ -8,7 +6,7 @@
             <div class="imageRegion">
                 <div class="upload-div">
                     <!-- <UploadPicture @my-event="handleChildEvent"></UploadPicture> -->
-                    <UploadVideo @blob-updated="handleBlobUpdated"></UploadVideo>
+                    <UploadPicture></UploadPicture>
                 </div>
                 <div class="output">
                     <!-- <img :src="imageData" class="output-img" alt="my-image"> -->
@@ -21,30 +19,9 @@
 </template>
   
 <script lang="ts" setup>
-import { ref, computed, onMounted } from 'vue'
 import TopBar from '../components/TopBar.vue';
-// import UploadPicture from '../components/UploadPicture.vue';
-import UploadVideo from '../components/UploadVideo.vue';
-// const outputImg = ref<string | null>(null)
+import UploadPicture from '../components/UploadPicture.vue';
 
-const videoPlayer = ref<HTMLVideoElement | null>(null);
-
-const handleBlobUpdated = async (blob: Blob) => {
-    const videoURL = URL.createObjectURL(blob);
-    console.log(videoURL);
-    
-    videoPlayer.value!.src = videoURL;
-};
-onMounted(() => {
-    videoPlayer.value = document.getElementById('videoPlayer') as HTMLVideoElement;
-});
-    // videoPlayer.value!.src = 'http://
-// function handleChildEvent(message: string) {
-//     outputImg.value = message
-// }
-// const imageData = computed(() => {
-//     return `data:image/png;base64,${outputImg.value}`;
-// });
 </script>  
 <style scoped>
 .content {
