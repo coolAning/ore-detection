@@ -21,7 +21,6 @@
 <script lang="ts" setup>
 import TopBar from '../components/TopBar.vue';
 import UploadPicture from '../components/UploadPicture.vue';
-
 </script>  
 <style scoped>
 .content {

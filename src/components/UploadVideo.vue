@@ -30,7 +30,7 @@ let chunks: Blob[] = [];
 socket.on('connect', () => {
   console.log('Socket连接已建立');
 });
-socket!.on('stream', (frame: ArrayBuffer) => {
+socket!.on('frame', (frame: ArrayBuffer) => {
   const blob = new Blob([frame], { type: 'video/webm' });
   
   emit('blob-updated', blob); // 触发自定义事件，将Blob数据传递给父组件

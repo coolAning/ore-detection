@@ -30,7 +30,7 @@ export type CreateRequestConfig<T extends APISchema> = {
     };
 };
 type RequestFunction<P = Record<string, any> | void, R = any> = (
-    params: P, id?:string
+    params: P
 ) => Promise<R>;
 // 创建请求客户端的类型约束
 export type CreateRequestClient<T extends APISchema> = {
