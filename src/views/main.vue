@@ -6,11 +6,10 @@
             <div class="imageRegion">
                 <div class="upload-div">
                     <!-- <UploadPicture @my-event="handleChildEvent"></UploadPicture> -->
-                    <UploadPicture></UploadPicture>
+                    <UploadPicture @base64="handleData"></UploadPicture>
                 </div>
                 <div class="output">
-                    <!-- <img :src="imageData" class="output-img" alt="my-image"> -->
-                    <video id="videoPlayer" style="object-fit: contain;" autoplay></video>
+                    <img :src=imageSrc class="output-img" alt="output" >
 
                 </div>
             </div>
@@ -19,8 +18,17 @@
 </template>
   
 <script lang="ts" setup>
+import { computed, ref } from 'vue';
 import TopBar from '../components/TopBar.vue';
 import UploadPicture from '../components/UploadPicture.vue';
+
+const imageData = ref('');
+const imageSrc = computed(() => 'data:image/png;base64,' + imageData.value);
+const handleData = (data:string) => {
+    console.log("收到图片");
+    
+    imageData.value = data;
+}
 </script>  
 <style scoped>
 .content {
@@ -58,13 +66,13 @@ import UploadPicture from '../components/UploadPicture.vue';
 
 .output-img {
     height: 100%;
-    width: 100%;
+    /* width: 100%; */
     object-fit: contain;
     /* height: 50vh; */
-    padding-top: 10vh;
+    /* padding-top: 10vh; */
     /* background-color: rgb(164, 170, 170); */
-    padding-left: 10vh;
-    padding-right: 10vh
+    /* padding-left: 10vh;
+    padding-right: 10vh */
 }
 </style>
   

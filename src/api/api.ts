@@ -41,6 +41,11 @@ interface TestAPISchema extends APISchema {
         response: {
         },
     },
+    getOutput: {
+        request: {
+        },
+        response: string
+    },
 }
 export const api = attachAPI<TestAPISchema>(service, {
     login: {
@@ -62,6 +67,10 @@ export const api = attachAPI<TestAPISchema>(service, {
     setCamera: {
         method: 'POST',
         url: '/main/setCamera',
+    },
+    getOutput: {
+        method: 'GET',
+        url: '/main/process',
     },
 
 });

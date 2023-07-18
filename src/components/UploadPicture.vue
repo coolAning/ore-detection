@@ -11,13 +11,20 @@
 </template>
   
 <script setup lang="ts">
+import api from '@/api/api';
+import { ElMessage } from 'element-plus';
 import { ref } from 'vue'
 
 let imgSrc = ref('http://127.0.0.1:5000/main/video_start')
-const emit = defineEmits(['my-event'])
-
+const emit = defineEmits(['base64']);
 const submitUpload = async () => {
-
+    await api.getOutput({})
+        .then(function (response) {
+            emit('base64', response.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
 }
 </script>
 
