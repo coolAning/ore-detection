@@ -5,7 +5,7 @@
             <p v-else class="artistic-text">正在连接摄像头...</p>
             <!-- <video controls autoplay src="http://127.0.0.1:5000/main/video_feed" style="object-fit: contain; max-width: 100%; max-height: 100%;"></video> -->
         </div>
-        <el-button class="ml-3" type="success" @click="submitUpload">
+        <el-button class="ml-3" type="success" @click="submitUpload" :disabled="!isImgLoaded">
             识别
         </el-button>
     </div>
