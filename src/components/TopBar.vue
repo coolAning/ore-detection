@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { House, Setting, SwitchButton } from '@element-plus/icons-vue';
-
+import '@/css/TopBarImage.css';
 const currentRoute = ref(useRoute().path);
 const router = useRouter();
 
@@ -26,8 +26,7 @@ function logout() {
     <div class="top">
         <!-- <el-text id="top-text">矿石检测系统</el-text> -->
         <span class="top-text">矿 石 检 测 系 统</span>
-
-        <div class="top-bar">
+        <div class="top-bar" >
 
             <button @click="gotoMain" :class="{ active: currentRoute === '/main' }">
                 <el-icon size="25px">
@@ -62,17 +61,19 @@ function logout() {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
     padding: 10px;
     height: 15vh;
+    
 }
 
 .top-text {
     letter-spacing: 1em;
     padding-left: 100px;
-    color: rgb(162, 115, 54);
+    color: rgb(164, 99, 15);
     font-size: 20px;
     font-weight: bold;
+    
 }
 
 .top-bar {
@@ -84,7 +85,7 @@ function logout() {
 
 .top button {
     border: 1px solid rgb(152, 152, 152);
-    background-color: transparent;
+    background-color: rgba(195, 193, 193, 0.3);
     cursor: pointer;
     font-size: 16px;
     padding: 10px;
@@ -92,6 +93,9 @@ function logout() {
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 5px; 
+
+    
 }
 
 .top-bar button {
