@@ -39,7 +39,7 @@
 
               <!-- <el-tab-pane label="账号登录" name="password" > -->
               <el-form-item label="" prop="account">
-                <el-input v-model="loginForm.account" type="number" class="m-2" placeholder="请输入账号">
+                <el-input v-model="loginForm.account"  class="m-2" placeholder="请输入账号">
 
                   <template #prefix>
                     <el-icon :size="22">

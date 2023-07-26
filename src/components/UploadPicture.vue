@@ -1,8 +1,8 @@
 <template>
     <div class="video-div">
         <div class="preview" style="height: 60vh;width: 80vh;margin-top: 8vh; display: flex; align-items: center;justify-content: center; ">
-            <img :src="imgSrc" class="video" v-if="isImgLoaded" style="object-fit: contain; max-width: 100%; max-height: 100%;" >
-            <p v-else class="artistic-text">正在连接摄像头...</p>
+            <img :src="imgSrc" class="video" v-show="isImgLoaded" style="object-fit: contain; max-width: 100%; max-height: 100%;" >
+            <p v-show="!isImgLoaded" class="artistic-text">正在连接摄像头...</p>
             <!-- <video controls autoplay src="http://127.0.0.1:5000/main/video_feed" style="object-fit: contain; max-width: 100%; max-height: 100%;"></video> -->
         </div>
         <el-button class="ml-3" type="success" @click="submitUpload" :disabled="!isImgLoaded">
@@ -19,11 +19,13 @@ import '@/css/MainImage.css';
 
 let imgSrc = ref('http://127.0.0.1:5000/main/video_start')
 const emit = defineEmits(['base64']);
-const isImgLoaded = ref(false);
+const isImgLoaded = ref(true);
+
 const submitUpload = async () => {
     await api.getOutput({})
         .then(function (response) {
-            isImgLoaded.value=true
+            console.log(response);
+            
             emit('base64', response.data);
         })
         .catch(function (error) {
